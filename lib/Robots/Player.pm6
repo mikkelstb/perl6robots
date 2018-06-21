@@ -1,17 +1,17 @@
 use v6c;
-use Robots::Coordinate;
 use Robots::GameCharacter;
+use Robots::Level;
 
-class Player does GameCharacter
+class Player is GameCharacter does Moveable
 {
-    submethod BUILD(Coordinate :$coordinate)
+    submethod TWEAK
     {
-	self.setCharacters(default => "🏃", dead => "✝️");
-	self.coordinate = $coordinate;
+	$!default_character = "🏃";
+	$!dead_character = "✝";
     }
 
-    # method move(Level $level)
-    # {
-    # 	return Nil;
-    # }
+    method move(Level $level)
+    {
+	say "Moving: " ~ self.WHO;
+    }
 }

@@ -1,19 +1,18 @@
 use v6c;
-use Robots::Coordinate;
 use Robots::GameCharacter;
-#use Robots::Level;
+use Robots::Level;
 
-class BasicRobot does GameCharacter
+class BasicRobot is GameCharacter
 {
-    submethod BUILD(Coordinate :$coordinate)
+    submethod TWEAK
     {
-	self.setCharacters(default => "🤖", dead => "☠️");
-	self.coordinate = $coordinate;
+	$!default_character = "🤖";
+	$!dead_character = "☠️";
     }
 
-    # method move(Level $level)
-    # {
-    # 	return Nil;
-    # }
+    method move(Level $level)
+    {
+	say "Moving: " ~ self.WHO;
+    }
     
 }
