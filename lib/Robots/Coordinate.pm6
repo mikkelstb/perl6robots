@@ -16,4 +16,9 @@ class Coordinate
 	}
 	return False;
     }
+
+    method stringOf
+    {
+	say "x: $!x, y: $!y";
+    }
 }

@@ -1,7 +1,7 @@
 use v6c;
 use Robots::Coordinate;
 
-class GameCharacter
+role GameCharacter
 {
     has Str $.default_character;
     has Str $.dead_character;
@@ -17,5 +17,5 @@ class GameCharacter
     {
 	$!coordinate = $c;
     }
-    
+
 }
