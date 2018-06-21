@@ -1,18 +1,14 @@
 use v6c;
 use lib 'lib';
-use Robots::Level;
+use Robots::RobotsLevel;
 use Test;
 
 
+my RobotsLevel $level = RobotsLevel.new(rows => 20, columns => 30, number => 5);
 
-my Level $level = Level.new(rows => 20, columns => 30, number => 1);
+$level.printCoordinates;
 
-$level.initRobots;
-$level.initPlayer;
+#$level.movePlayer;
+#$level.moveRobots;
 
-say $level.getCoordinates;
 
-$level.movePlayer;
-$level.moveRobots;
-
-say $level.getCoordinates;
