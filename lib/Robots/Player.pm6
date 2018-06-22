@@ -1,8 +1,8 @@
 use v6c;
 use Robots::GameCharacter;
-use Robots::Level;
 
-class Player is GameCharacter does Moveable
+
+class Player does GameCharacter
 {
     submethod TWEAK
     {
@@ -10,7 +10,7 @@ class Player is GameCharacter does Moveable
 	$!dead_character = "✝";
     }
 
-    method move(Level $level)
+    method move()
     {
 	say "Moving: " ~ self.WHO;
     }

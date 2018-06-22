@@ -1,5 +1,5 @@
 use v6c;
-use Robots::Level;
+use Robots::RobotsLevel;
 
 role Moveable
 {

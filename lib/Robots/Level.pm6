@@ -17,7 +17,12 @@ class Level
     
     method addGameCharacterType(Str $type_name)
     {
-	%!game_characters{$type_name} = Array[GameCharacter].new;
+	%.game_characters{$type_name} = Array[GameCharacter].new;
+    }
+
+    method addGameCharacter(GameCharacter $gc)
+    {
+	%.game_characters{$gc.WHO.Str}.push($gc);
     }
 
     method pickCoordinate returns Coordinate
@@ -46,13 +51,4 @@ class Level
 	}
 	return False;
     }
-
-    method printCoordinates
-    {
-	for %!game_characters.values -> GameCharacter @characters
-	{
-	    for @characters -> GameCharacter $gc {say $gc.stringOf}
-	}
-    }
-
 }

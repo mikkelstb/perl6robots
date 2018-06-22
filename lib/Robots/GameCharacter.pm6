@@ -1,10 +1,11 @@
 use v6c;
 use Robots::Coordinate;
 
-class GameCharacter
+role GameCharacter
 {
     has Str $.default_character;
     has Str $.dead_character;
+
     has Coordinate $.coordinate;
 
     submethod BUILD(Coordinate :$!coordinate) {}
@@ -18,5 +19,7 @@ class GameCharacter
     {
 	return $.default_character ~ "- (" ~ $.coordinate.x ~ "," ~ $.coordinate.y ~ ")";
     }
+
+    method move() { ... }
 
 }
