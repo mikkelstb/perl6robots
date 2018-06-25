@@ -8,6 +8,7 @@ class Player does GameCharacter
     {
 	$!default_character = "🏃";
 	$!dead_character = "✝";
+	$!alive = True;
     }
 
     method move()

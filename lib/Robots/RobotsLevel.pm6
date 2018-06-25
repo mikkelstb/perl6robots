@@ -14,16 +14,45 @@ class RobotsLevel is Level
 	
 	self!addPlayer;
 	self!addRobots;
-	self!addPlayer;
+
+	loop
+	{
+	    self.moveAllCharacters;
+	    self.checkForCollision;
+	    self.printAllCharacters;
+	    prompt;
+	}
+
+	
     }    
 
     method moveAllCharacters
     {
+	[%.game_characters<BasicRobot>]>>.moveTowardsTarget(%.game_characters<Player>[0].coordinate);
+    }
+
+    method checkForCollision
+    {
+	for %.game_characters<BasicRobot>.kv -> Int $index, BasicRobot $br
+	{
+	    for %.game_characters<BasicRobot>[$index+1 .. *].kv -> Int $index2, BasicRobot $br2
+	    {
+		say "comparing $index to $index2";
+		if $br.coordinate.equals($br2.coordinate)
+		{
+		    $br.die;
+		    $br2.die;
+		    last;
+		}
+	    }   
+	}
+    }
+
+    method printAllCharacters
+    {
 	say [%.game_characters<Player>]>>.stringOf;
 	say [%.game_characters<BasicRobot>]>>.stringOf;
     }
-
-    
     
     method !addRobots()
     {

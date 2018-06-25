@@ -3,8 +3,9 @@ use Robots::Coordinate;
 
 role GameCharacter
 {
-    has Str $.default_character;
-    has Str $.dead_character;
+    has Str $!default_character;
+    has Str $!dead_character;
+    has Bool $!alive;
 
     has Coordinate $.coordinate;
 
@@ -15,11 +16,21 @@ role GameCharacter
 	$!coordinate = $c;
     }
 
-    method stringOf returns Str
+    method die
     {
-	return $.default_character ~ "- (" ~ $.coordinate.x ~ "," ~ $.coordinate.y ~ ")";
+	$!alive = False;
+    }
+    
+    method character returns Str
+    {
+	if $!alive { return $!default_character }
+	return $!dead_character;
     }
 
-    method move() { ... }
+    method stringOf returns Str
+    {
+	
+	return self.character ~ "- (" ~ $.coordinate.x ~ "," ~ $.coordinate.y ~ ")";
+    }
 
 }

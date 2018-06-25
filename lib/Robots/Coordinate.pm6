@@ -2,8 +2,8 @@ use v6c;
 
 class Coordinate
 {
-    has Int $.x;
-    has Int $.y;
+    has Int $.x is rw;
+    has Int $.y is rw;
 
     submethod BUILD(Int :$!x, Int :$!y){}
 

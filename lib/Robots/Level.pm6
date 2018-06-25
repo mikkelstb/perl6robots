@@ -15,11 +15,6 @@ class Level
     {
     }
     
-    method addGameCharacterType(Str $type_name)
-    {
-	%.game_characters{$type_name} = Array[GameCharacter].new;
-    }
-
     method addGameCharacter(GameCharacter $gc)
     {
 	%.game_characters{$gc.WHO.Str}.push($gc);
