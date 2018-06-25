@@ -4,6 +4,6 @@ use Robots::RobotsLevel;
 use Robots::Coordinate;
 use Test;
 
-my RobotsLevel $l = RobotsLevel.new(rows => 10, columns => 10, number => 1);
+my RobotsLevel $l = RobotsLevel.new(rows => 10, columns => 10, number => 5);
 
 $l.moveAllCharacters;
