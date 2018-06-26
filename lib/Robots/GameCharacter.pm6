@@ -5,7 +5,7 @@ role GameCharacter
 {
     has Str $!default_character;
     has Str $!dead_character;
-    has Bool $!alive;
+    has Bool $.alive;
 
     has Coordinate $.coordinate;
 
@@ -15,7 +15,7 @@ role GameCharacter
     {
 	$!coordinate = $c;
     }
-
+    
     method die
     {
 	$!alive = False;

@@ -3,7 +3,7 @@ use Robots::Coordinate;
 use Robots::BasicRobot;
 use Robots::Player;
 use Robots::Level;
-
+use Terminal::Print::DecodedInput;
 
 class RobotsLevel is Level
 {
@@ -14,20 +14,41 @@ class RobotsLevel is Level
 	
 	self!addPlayer;
 	self!addRobots;
+    }
 
-	loop
+    method start
+    {
+    	while %.game_characters<Player>[0].alive
 	{
+	    self.printAllCharacters;
 	    self.moveAllCharacters;
 	    self.checkForCollision;
-	    self.printAllCharacters;
-	    prompt;
 	}
+	self.printAllCharacters;
+    }
 
+    method getArrowInput returns Str
+    {
+	my Str $pressed;
 	
-    }    
-
+	my $in-supply = decoded-input-supply;
+	react
+	{
+	    whenever $in-supply -> $c
+	    {
+		if $c ~~ SpecialKey
+		{
+		    $pressed = $c.Str;
+		    done;
+		}
+	    }
+	}
+	return $pressed;
+    }
+    
     method moveAllCharacters
     {
+	[%.game_characters<Player>]>>.move(self.getArrowInput);
 	[%.game_characters<BasicRobot>]>>.moveTowardsTarget(%.game_characters<Player>[0].coordinate);
     }
 
@@ -37,14 +58,21 @@ class RobotsLevel is Level
 	{
 	    for %.game_characters<BasicRobot>[$index+1 .. *].kv -> Int $index2, BasicRobot $br2
 	    {
-		say "comparing $index to $index2";
 		if $br.coordinate.equals($br2.coordinate)
 		{
 		    $br.die;
 		    $br2.die;
 		    last;
 		}
-	    }   
+	    }
+	    for %.game_characters<Player>[0 .. *] -> Player $player
+	    {
+		if $br.coordinate.equals($player.coordinate)
+		{
+		    $br.die;
+		    $player.die;
+		}
+	    }
 	}
     }
 

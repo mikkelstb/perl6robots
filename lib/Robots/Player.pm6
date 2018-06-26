@@ -11,8 +11,14 @@ class Player does GameCharacter
 	$!alive = True;
     }
 
-    method move()
+    method move(Str $direction)
     {
-	say "Moving: " ~ self.WHO;
+	given $direction
+	{
+	    when 'CursorUp' { $!coordinate.x-- }
+	    when 'CursorDown' { $!coordinate.x++ }
+	    when 'CursorLeft' { $!coordinate.y-- }
+	    when 'CursorRight' { $!coordinate.y++ }
+	}
     }
 }
